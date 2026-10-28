@@ -1,0 +1,55 @@
+.home-container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+  padding: 40px 0 64px;
+}
+
+.brand {
+  margin-left: 12px;
+  font-weight: 700;
+}
+
+.hero {
+  text-align: center;
+  padding: 42px 12px;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin: 12px 0;
+}
+
+.hero p {
+  line-height: 1.7;
+}
+
+.eyebrow {
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.universe-card {
+  max-width: 420px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.universe-card img {
+  height: 300px;
+  object-fit: contain;
+  padding: 16px;
+}
+
+mat-card-actions {
+  padding: 16px;
+}
+
+@media (max-width: 600px) {
+  .home-container {
+    padding-top: 16px;
+  }
+
+  .hero {
+    padding: 28px 8px;
+  }
+}

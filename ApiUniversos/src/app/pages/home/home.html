@@ -1,1 +1,45 @@
-<p>home works!</p>
+<mat-toolbar color="primary">
+  <mat-icon>auto_awesome</mat-icon>
+  <span class="brand">Dragon Ball Explorer</span>
+</mat-toolbar>
+
+<main class="home-container">
+  <section class="hero">
+    <p class="eyebrow">EXPLORA EL UNIVERSO</p>
+
+    <h1>El universo de Dragon Ball</h1>
+
+    <p>
+      Descubre los guerreros, sus historias,
+      sus poderes y sus planetas.
+    </p>
+  </section>
+
+  <mat-card class="universe-card">
+    <img
+      mat-card-image
+      src="https://dragonball-api.com/characters/goku_normal.webp"
+      alt="Personaje de Dragon Ball"
+    />
+
+    <mat-card-content>
+      <h2>Universo Dragon Ball</h2>
+
+      <p>
+        Explora los personajes y descubre
+        toda la información disponible.
+      </p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <a
+        mat-flat-button
+        color="primary"
+        routerLink="/characters"
+      >
+        <mat-icon>explore</mat-icon>
+        Explorar personajes
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</main>
