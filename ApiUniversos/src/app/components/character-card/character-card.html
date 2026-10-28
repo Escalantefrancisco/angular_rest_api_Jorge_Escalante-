@@ -1,1 +1,28 @@
-<p>character-card works!</p>
+<mat-card class="character-card">
+  <a
+    class="character-image-link"
+    [routerLink]="['/characters', character.id]"
+    [attr.aria-label]="'Ver detalles de ' + character.name"
+  >
+    <img
+      mat-card-image
+      [src]="character.image"
+      [alt]="character.name"
+      loading="lazy"
+    />
+  </a>
+
+  <mat-card-content>
+    <p class="character-id">ID: {{ character.id }}</p>
+    <h2>{{ character.name }}</h2>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a
+      mat-button
+      [routerLink]="['/characters', character.id]"
+    >
+      Ver información
+    </a>
+  </mat-card-actions>
+</mat-card>

@@ -1,19 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-import { ImageDialog } from './image-dialog';
+import { ImageDialogComponent } from './image-dialog';
 
-describe('ImageDialog', () => {
-  let component: ImageDialog;
-  let fixture: ComponentFixture<ImageDialog>;
+describe('ImageDialogComponent', () => {
+  let component: ImageDialogComponent;
+  let fixture: ComponentFixture<ImageDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ImageDialog]
+      imports: [ImageDialogComponent],
+      providers: [
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: { image: 'https://example.com/goku.png', name: 'Goku' },
+        },
+      ],
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ImageDialog);
+    fixture = TestBed.createComponent(ImageDialogComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
     await fixture.whenStable();
   });
 

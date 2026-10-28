@@ -1,1 +1,12 @@
-<p>image-dialog works!</p>
+<h2 mat-dialog-title>{{ data.name }}</h2>
+
+<mat-dialog-content>
+  <img [src]="data.image" [alt]="data.name" />
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+    Cerrar
+  </button>
+</mat-dialog-actions>

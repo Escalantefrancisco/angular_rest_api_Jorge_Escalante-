@@ -1,1 +1,72 @@
-<p>character-detail works!</p>
+<mat-toolbar color="primary">
+  <button mat-icon-button routerLink="/characters"
+          aria-label="Volver al listado">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span>Información del personaje</span>
+</mat-toolbar>
+
+<main class="detail-container">
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="48"></mat-spinner>
+      <p>Cargando información...</p>
+    </div>
+  } @else if (character(); as character) {
+    <mat-card class="detail-card">
+      <button
+        class="large-image-button"
+        type="button"
+        (click)="openImage()"
+        [attr.aria-label]="'Ampliar imagen de ' + character.name"
+      >
+        <img [src]="character.image" [alt]="character.name" />
+        <span>Ampliar imagen</span>
+      </button>
+
+      <mat-card-content>
+        <p class="character-id">ID: {{ character.id }}</p>
+        <h1>{{ character.name }}</h1>
+
+        <section class="information">
+          <h2>Información general</h2>
+
+          <p><strong>Nombre:</strong> {{ character.name }}</p>
+          <p><strong>ID:</strong> {{ character.id }}</p>
+          <p><strong>Raza:</strong> {{ character.race || 'No disponible' }}</p>
+          <p><strong>Género:</strong> {{ character.gender || 'No disponible' }}</p>
+          <p><strong>Ki:</strong> {{ character.ki || 'No disponible' }}</p>
+          <p><strong>Ki máximo:</strong> {{ character.maxKi || 'No disponible' }}</p>
+          <p><strong>Afiliación:</strong> {{ character.affiliation || 'No disponible' }}</p>
+          <p>
+            <strong>Planeta de origen:</strong>
+            {{ character.originPlanet?.name || 'No disponible' }}
+          </p>
+
+          <h2>Descripción</h2>
+          <p>{{ character.description || 'Sin descripción disponible.' }}</p>
+        </section>
+
+        @if (character.transformations?.length) {
+          <h2>Transformaciones</h2>
+
+          <div class="transformations">
+            @for (form of character.transformations; track form.id) {
+              <mat-card class="transformation-card">
+                <img [src]="form.image" [alt]="form.name" loading="lazy" />
+                <mat-card-content>
+                  <h3>{{ form.name }}</h3>
+                  <p>Ki: {{ form.ki || 'No disponible' }}</p>
+                </mat-card-content>
+              </mat-card>
+            }
+          </div>
+        }
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <p>No fue posible encontrar el personaje.</p>
+    <a mat-button routerLink="/characters">Volver al listado</a>
+  }
+</main>

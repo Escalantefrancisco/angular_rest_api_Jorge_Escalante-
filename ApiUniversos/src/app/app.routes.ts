@@ -2,8 +2,8 @@
 import { Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home';
-import { Characters } from './pages/characters/characters';
-import { CharacterDetail } from './pages/character-detail/character-detail';
+import { CharactersComponent } from './pages/characters/characters';
+import { CharacterDetailComponent} from './pages/character-detail/character-detail';
 
 
 export const routes: Routes = [
@@ -13,11 +13,11 @@ export const routes: Routes = [
   },
   {
     path: 'characters',
-    component: Characters
+    component: CharactersComponent
   },
   {
     path: 'characters/:id',
-    component: CharacterDetail 
+    component: CharacterDetailComponent
   },
   {
     path: '**',

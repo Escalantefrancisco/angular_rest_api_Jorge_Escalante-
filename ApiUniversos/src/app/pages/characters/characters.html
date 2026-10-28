@@ -1,1 +1,59 @@
-<p>characters works!</p>
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    routerLink="/"
+    aria-label="Volver al inicio"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span>Personajes de Dragon Ball</span>
+</mat-toolbar>
+
+<main class="characters-container">
+  <header class="list-header">
+    <h1>Explora los personajes</h1>
+
+    <p>
+      Descubre sus nombres, imágenes e información.
+    </p>
+
+    @if (totalCharacters() > 0) {
+      <p>Total de personajes: {{ totalCharacters() }}</p>
+    }
+  </header>
+
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="52"></mat-spinner>
+      <p>Cargando personajes...</p>
+    </div>
+  } @else if (error()) {
+    <div class="message">
+      <p>No se pudo conectar con la API.</p>
+
+      <button mat-flat-button color="primary" (click)="retry()">
+        <mat-icon>refresh</mat-icon>
+        Reintentar
+      </button>
+    </div>
+  } @else {
+    <section class="characters-grid">
+      @for (character of characters(); track character.id) {
+        <app-character-card [character]="character" />
+      } @empty {
+        <p>No se encontraron personajes.</p>
+      }
+    </section>
+
+    <mat-paginator
+      [length]="totalCharacters()"
+      [pageIndex]="currentPage"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[6, 12, 24]"
+      [showFirstLastButtons]="true"
+      (page)="onPageChange($event)"
+      aria-label="Paginación de personajes"
+    />
+  }
+</main>
