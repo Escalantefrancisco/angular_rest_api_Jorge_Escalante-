@@ -1,0 +1,101 @@
+
+.detail-container {
+  width: min(1000px, 94%);
+  margin: 32px auto;
+}
+
+.detail-card {
+  overflow: hidden;
+}
+
+.image-button {
+  width: 100%;
+  padding: 24px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: zoom-in;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.image-button img {
+  max-width: 100%;
+  width: 100%;
+  height: min(420px, 55vh);
+  object-fit: contain;
+}
+
+.detail-card > mat-card-content {
+  padding: 24px;
+}
+
+.detail-card section {
+  margin-top: 28px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.type-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--app-background);
+  color: var(--app-text);
+  text-transform: capitalize;
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: minmax(110px, 1fr) 40px minmax(80px, 2fr);
+  gap: 12px;
+  align-items: center;
+  margin: 14px 0;
+}
+
+.stat-track {
+  height: 10px;
+  background: var(--app-background);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  background: var(--app-accent);
+  border-radius: inherit;
+}
+
+.muted {
+  color: var(--app-muted);
+}
+
+.loading {
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .detail-card > mat-card-content {
+    padding: 16px;
+  }
+
+  .image-button {
+    padding: 12px;
+  }
+
+  .stat-row {
+    grid-template-columns: 100px 32px minmax(60px, 1fr);
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+}

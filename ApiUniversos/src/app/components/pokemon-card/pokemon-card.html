@@ -1,0 +1,42 @@
+
+<mat-card class="pokemon-card">
+  <a
+    class="pokemon-image-link"
+    [routerLink]="['/pokemon', pokemon.id]"
+    [attr.aria-label]="'Ver detalles de ' + pokemon.name"
+  >
+    @if (imageUrl) {
+      <img
+        mat-card-image
+        [src]="imageUrl"
+        [alt]="pokemon.name"
+        loading="lazy"
+      />
+    }
+  </a>
+
+  <mat-card-content>
+    <p class="pokemon-id">
+      N.º {{ pokemon.id.toString().padStart(4, '0') }}
+    </p>
+
+    <h2>{{ pokemon.name | titlecase }}</h2>
+
+    <div class="pokemon-types">
+      @for (item of pokemon.types; track item.slot) {
+        <span class="type-chip">
+          {{ item.type.name }}
+        </span>
+      }
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a
+      mat-button
+      [routerLink]="['/pokemon', pokemon.id]"
+    >
+      Ver información
+    </a>
+  </mat-card-actions>
+</mat-card>

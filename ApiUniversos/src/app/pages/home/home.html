@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <mat-icon>auto_awesome</mat-icon>
-  <span class="brand">Dragon Ball Explorer</span>
+  <span class="brand">Explorador de universos</span>
 </mat-toolbar>
 
 <main class="home-container">
@@ -8,8 +8,8 @@
     <p class="eyebrow">EXPLORA EL UNIVERSO</p>
     <h1>Explora otros universos</h1>
     <p>
-      Descubre los guerreros, sus historias,
-      sus poderes y sus planetas.
+      Descubre los guerreros, sus historias y
+      sus poderes.
     </p>
   </section>
 
@@ -59,5 +59,34 @@
         </a>
       </mat-card-actions>
     </mat-card>
+    
+<mat-card class="universe-card">
+  <img
+    mat-card-image
+    src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"
+    alt="Pikachu, Pokémon eléctrico"
+  />
+
+  <mat-card-content>
+    <h2>Universo Pokémon</h2>
+
+    <p>
+      Explora los Pokémon, sus tipos,
+      habilidades y estadísticas.
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a
+      mat-flat-button
+      color="primary"
+      routerLink="/pokemon"
+    >
+      <mat-icon>catching_pokemon</mat-icon>
+      Explorar Pokémon
+    </a>
+  </mat-card-actions>
+</mat-card>
+
   </section>
 </main>

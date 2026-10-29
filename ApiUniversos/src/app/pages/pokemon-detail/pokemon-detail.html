@@ -1,0 +1,110 @@
+
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    routerLink="/pokemon"
+    aria-label="Volver al listado"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span>Detalle del Pokémon</span>
+</mat-toolbar>
+
+<main class="detail-container">
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="48"></mat-spinner>
+      <p>Cargando información...</p>
+    </div>
+  } @else if (error() || !pokemon()) {
+    <mat-card>
+      <mat-card-content>
+        <h1>Pokémon no encontrado</h1>
+        <p>No fue posible obtener su información.</p>
+        <a mat-button routerLink="/pokemon">Volver al listado</a>
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <mat-card class="detail-card">
+      <button
+        class="image-button"
+        type="button"
+        (click)="openImage()"
+        [attr.aria-label]="'Ampliar imagen de ' + pokemon()!.name"
+      >
+        @if (imageUrl) {
+          <img [src]="imageUrl" [alt]="pokemon()!.name" />
+        }
+        <span>Ampliar imagen</span>
+      </button>
+
+      <mat-card-content>
+        <p class="muted">
+          N.º {{ pokemon()!.id.toString().padStart(4, '0') }}
+        </p>
+
+        <h1>{{ pokemon()!.name | titlecase }}</h1>
+
+        <section>
+          <h2>Información general</h2>
+
+          <p><strong>ID:</strong> {{ pokemon()!.id }}</p>
+          <p><strong>Nombre:</strong> {{ pokemon()!.name | titlecase }}</p>
+          <p><strong>Altura:</strong> {{ pokemon()!.height / 10 }} m</p>
+          <p><strong>Peso:</strong> {{ pokemon()!.weight / 10 }} kg</p>
+          <p>
+            <strong>Experiencia base:</strong>
+            {{ pokemon()!.base_experience ?? 'No disponible' }}
+          </p>
+        </section>
+
+        <section>
+          <h2>Tipos</h2>
+
+          <div class="chips">
+            @for (item of pokemon()!.types; track item.slot) {
+              <span class="type-chip">
+                {{ item.type.name }}
+              </span>
+            }
+          </div>
+        </section>
+
+        <section>
+          <h2>Habilidades</h2>
+
+          @for (item of pokemon()!.abilities; track item.slot) {
+            <p>
+              {{ item.ability.name | titlecase }}
+              @if (item.is_hidden) {
+                <span class="muted">(oculta)</span>
+              }
+            </p>
+          }
+        </section>
+
+        <section>
+          <h2>Estadísticas base</h2>
+
+          @for (stat of pokemon()!.stats; track stat.stat.name) {
+            <div class="stat-row">
+              <span>{{ stat.stat.name | titlecase }}</span>
+              <strong>{{ stat.base_stat }}</strong>
+              <div
+                class="stat-track"
+                role="img"
+                [attr.aria-label]="stat.stat.name + ': ' + stat.base_stat"
+              >
+                <div
+                  class="stat-fill"
+                  [style.width.%]="stat.base_stat / 255 * 100"
+                ></div>
+              </div>
+            </div>
+          }
+        </section>
+      </mat-card-content>
+    </mat-card>
+  }
+</main>

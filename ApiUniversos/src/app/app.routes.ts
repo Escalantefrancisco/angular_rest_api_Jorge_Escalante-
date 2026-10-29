@@ -6,6 +6,8 @@ import { CharactersComponent } from './pages/characters/characters';
 import { CharacterDetailComponent} from './pages/character-detail/character-detail';
 import { DigimonComponent } from './pages/digimon/digimon';
 import { DigimonDetailComponent} from './pages/digimon-detail/digimon-detail';
+import { PokemonComponent } from './pages/pokemon/pokemon';
+import { PokemonDetailComponent } from './pages/pokemon-detail/pokemon-detail';
 
 
 export const routes: Routes = [
@@ -24,6 +26,10 @@ export const routes: Routes = [
 
   { path: 'digimon', component: DigimonComponent },
   { path: 'digimon/:id', component: DigimonDetailComponent },
+
+  { path: 'pokemon', component: PokemonComponent },
+  { path: 'pokemon/:id', component: PokemonDetailComponent },
+
   {
     path: '**',
     redirectTo: ''
