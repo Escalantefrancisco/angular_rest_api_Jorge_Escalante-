@@ -1,3 +1,4 @@
+
 .home-container {
   width: min(1100px, 92%);
   margin: 0 auto;
@@ -28,28 +29,42 @@
   letter-spacing: 3px;
 }
 
-.universe-card {
-  max-width: 420px;
+.universes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.universe-card {
+  width: 100%;
   overflow: hidden;
 }
 
 .universe-card img {
-  height: 300px;
+  height: 280px;
+  width: 100%;
   object-fit: contain;
   padding: 16px;
+  box-sizing: border-box;
 }
 
-mat-card-actions {
+.universe-card mat-card-content {
   padding: 16px;
 }
 
-@media (max-width: 600px) {
-  .home-container {
-    padding-top: 16px;
+.universe-card mat-card-actions {
+  padding: 16px;
+}
+
+@media (max-width: 650px) {
+  .universes-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
-  .hero {
-    padding: 28px 8px;
+  .universe-card img {
+    height: 240px;
   }
 }

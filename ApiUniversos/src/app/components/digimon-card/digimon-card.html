@@ -1,0 +1,32 @@
+
+<mat-card class="digimon-card">
+  <a
+    class="digimon-image-link"
+    [routerLink]="['/digimon', digimon.id]"
+    [attr.aria-label]="'Ver detalles de ' + digimon.name"
+  >
+    <img
+      mat-card-image
+      [src]="digimon.image"
+      [alt]="digimon.name"
+      loading="lazy"
+    />
+  </a>
+
+  <mat-card-content>
+    <p class="digimon-id">ID: {{ digimon.id }}</p>
+    <h2>{{ digimon.name }}</h2>
+
+    @if (digimon.levels?.length) {
+      <p>
+        Nivel: {{ digimon.levels![0].level }}
+      </p>
+    }
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/digimon', digimon.id]">
+      Ver información
+    </a>
+  </mat-card-actions>
+</mat-card>

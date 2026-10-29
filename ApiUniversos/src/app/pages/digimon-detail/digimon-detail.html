@@ -1,0 +1,150 @@
+
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    routerLink="/digimon"
+    aria-label="Volver a Digimon"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span>Detalle del Digimon</span>
+</mat-toolbar>
+
+<main class="detail-container">
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="48"></mat-spinner>
+      <p>Cargando información...</p>
+    </div>
+  } @else if (error() || !digimon()) {
+    <mat-card>
+      <mat-card-content>
+        <h1>Digimon no encontrado</h1>
+        <p>No fue posible obtener sus datos.</p>
+        <a mat-button routerLink="/digimon">Volver al listado</a>
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <mat-card class="detail-card">
+      <button
+        class="image-button"
+        type="button"
+        (click)="openImage()"
+        [attr.aria-label]="'Ampliar imagen de ' + digimon()!.name"
+      >
+        <img [src]="digimon()!.image" [alt]="digimon()!.name" />
+        <span>Ampliar imagen</span>
+      </button>
+
+      <mat-card-content>
+        <p class="muted">Identificador: {{ digimon()!.id }}</p>
+        <h1>{{ digimon()!.name }}</h1>
+
+        <section>
+          <h2>Información general</h2>
+
+          <p><strong>ID:</strong> {{ digimon()!.id }}</p>
+          <p><strong>Nombre:</strong> {{ digimon()!.name }}</p>
+
+          @if (digimon()!.levels?.length) {
+            <p>
+              <strong>Niveles:</strong>
+              @for (level of digimon()!.levels; track level.id) {
+                {{ level.level }}{{ !$last ? ', ' : '' }}
+              }
+            </p>
+          }
+
+          @if (digimon()!.types?.length) {
+            <p>
+              <strong>Tipos:</strong>
+              @for (type of digimon()!.types; track type.id) {
+                {{ type.type }}{{ !$last ? ', ' : '' }}
+              }
+            </p>
+          }
+
+          @if (digimon()!.attributes?.length) {
+            <p>
+              <strong>Atributos:</strong>
+              @for (attribute of digimon()!.attributes; track attribute.id) {
+                {{ attribute.attribute }}{{ !$last ? ', ' : '' }}
+              }
+            </p>
+          }
+
+          @if (digimon()!.fields?.length) {
+            <p>
+              <strong>Campos:</strong>
+              @for (field of digimon()!.fields; track field.id) {
+                {{ field.field }}{{ !$last ? ', ' : '' }}
+              }
+            </p>
+          }
+        </section>
+
+        @if (digimon()!.descriptions?.length) {
+          <section>
+            <h2>Descripción</h2>
+
+            @for (description of digimon()!.descriptions; track $index) {
+              <p>{{ description.description }}</p>
+              <p class="muted">
+                Idioma: {{ description.language }}
+              </p>
+            }
+          </section>
+        }
+
+        @if (digimon()!.skills?.length) {
+          <section>
+            <h2>Habilidades</h2>
+
+            @for (skill of digimon()!.skills; track skill.id) {
+              <mat-card class="info-card">
+                <mat-card-content>
+                  <h3>{{ skill.skill }}</h3>
+
+                  @if (skill.translation) {
+                    <p>{{ skill.translation }}</p>
+                  }
+
+                  @if (skill.description) {
+                    <p>{{ skill.description }}</p>
+                  }
+                </mat-card-content>
+              </mat-card>
+            }
+          </section>
+        }
+
+        @if (digimon()!.priorEvolutions?.length) {
+          <section>
+            <h2>Evoluciones anteriores</h2>
+
+            @for (evolution of digimon()!.priorEvolutions; track evolution.id) {
+              <p>{{ evolution.digimon }}</p>
+            }
+          </section>
+        }
+
+        @if (digimon()!.nextEvolutions?.length) {
+          <section>
+            <h2>Próximas evoluciones</h2>
+
+            @for (evolution of digimon()!.nextEvolutions; track evolution.id) {
+              <p>{{ evolution.digimon }}</p>
+
+              @if (evolution.condition) {
+                <p class="muted">
+                  Condición: {{ evolution.condition }}
+                </p>
+              }
+            }
+          </section>
+        }
+      </mat-card-content>
+    </mat-card>
+  }
+</main>

@@ -6,40 +6,58 @@
 <main class="home-container">
   <section class="hero">
     <p class="eyebrow">EXPLORA EL UNIVERSO</p>
-
-    <h1>El universo de Dragon Ball</h1>
-
+    <h1>Explora otros universos</h1>
     <p>
       Descubre los guerreros, sus historias,
       sus poderes y sus planetas.
     </p>
   </section>
 
-  <mat-card class="universe-card">
-    <img
-      mat-card-image
-      src="https://dragonball-api.com/characters/goku_normal.webp"
-      alt="Personaje de Dragon Ball"
-    />
+  <section class="universes-grid">
+    <mat-card class="universe-card">
+      <img
+        mat-card-image
+        src="https://dragonball-api.com/characters/goku_normal.webp"
+        alt="Universo Dragon Ball"
+      />
 
-    <mat-card-content>
-      <h2>Universo Dragon Ball</h2>
+      <mat-card-content>
+        <h2>Universo Dragon Ball</h2>
+        <p>
+          Descubre los guerreros Z, sus poderes
+          y sus historias.
+        </p>
+      </mat-card-content>
 
-      <p>
-        Explora los personajes y descubre
-        toda la información disponible.
-      </p>
-    </mat-card-content>
+      <mat-card-actions>
+        <a mat-flat-button color="primary" routerLink="/characters">
+          <mat-icon>explore</mat-icon>
+          Explorar Dragon Ball
+        </a>
+      </mat-card-actions>
+    </mat-card>
 
-    <mat-card-actions>
-      <a
-        mat-flat-button
-        color="primary"
-        routerLink="/characters"
-      >
-        <mat-icon>explore</mat-icon>
-        Explorar personajes
-      </a>
-    </mat-card-actions>
-  </mat-card>
+    <mat-card class="universe-card">
+      <img
+        mat-card-image
+        src="https://digi-api.com/images/digimon/w/Agumon.png"
+        alt="Universo Digimon"
+      />
+
+      <mat-card-content>
+        <h2>Universo Digimon</h2>
+        <p>
+          Conoce los Digimon, sus niveles
+          y sus evoluciones.
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <a mat-flat-button color="primary" routerLink="/digimon">
+          <mat-icon>pets</mat-icon>
+          Explorar Digimon
+        </a>
+      </mat-card-actions>
+    </mat-card>
+  </section>
 </main>

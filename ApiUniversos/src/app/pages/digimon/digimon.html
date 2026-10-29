@@ -1,0 +1,53 @@
+
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    routerLink="/"
+    aria-label="Volver al inicio"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span>Universo Digimon</span>
+</mat-toolbar>
+
+<main class="digimon-container">
+  <header>
+    <h1>Explora los Digimon</h1>
+    <p>Descubre sus nombres, imágenes y niveles evolutivos.</p>
+    <p>Total de Digimon: {{ totalDigimon() }}</p>
+  </header>
+
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="48"></mat-spinner>
+      <p>Cargando Digimon...</p>
+    </div>
+  } @else if (error()) {
+    <div class="loading">
+      <p>No se pudo conectar con la API.</p>
+      <button mat-flat-button color="primary" (click)="retry()">
+        <mat-icon>refresh</mat-icon>
+        Reintentar
+      </button>
+    </div>
+  } @else {
+    <section class="digimon-grid">
+      @for (digimon of digimonList(); track digimon.id) {
+        <app-digimon-card [digimon]="digimon" />
+      } @empty {
+        <p>No se encontraron Digimon.</p>
+      }
+    </section>
+
+    <mat-paginator
+      [length]="totalDigimon()"
+      [pageIndex]="currentPage"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[6, 12, 24]"
+      [showFirstLastButtons]="true"
+      (page)="onPageChange($event)"
+      aria-label="Paginación de Digimon"
+    />
+  }
+</main>
