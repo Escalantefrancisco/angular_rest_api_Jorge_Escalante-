@@ -8,6 +8,9 @@ import { DigimonComponent } from './pages/digimon/digimon';
 import { DigimonDetailComponent} from './pages/digimon-detail/digimon-detail';
 import { PokemonComponent } from './pages/pokemon/pokemon';
 import { PokemonDetailComponent } from './pages/pokemon-detail/pokemon-detail';
+import { DemonSlayerDetailComponent } from './components/demon-slayer-detail/demon-slayer-detail';
+import { DemonSlayerComponent } from './components/demon-slayer/demon-slayer';
+
 
 
 export const routes: Routes = [
@@ -29,6 +32,10 @@ export const routes: Routes = [
 
   { path: 'pokemon', component: PokemonComponent },
   { path: 'pokemon/:id', component: PokemonDetailComponent },
+
+  { path: 'demon-slayer',component: DemonSlayerComponent},
+  { path: 'demon-slayer/:id',component: DemonSlayerDetailComponent},
+  
 
   {
     path: '**',

@@ -1,0 +1,28 @@
+<mat-card class="character-card">
+  <a
+    class="character-image-link"
+    [routerLink]="['/demon-slayer', character.id]"
+    [attr.aria-label]="'Ver detalles de ' + character.name"
+  >
+    <img
+      mat-card-image
+      [src]="character.img"
+      [alt]="character.name"
+      loading="lazy"
+    />
+  </a>
+
+  <mat-card-content>
+    <p class="character-id">ID: {{ character.id }}</p>
+    <h2>{{ character.name }}</h2>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a
+      mat-button
+      [routerLink]="['/demon-slayer', character.id]"
+    >
+      Ver información
+    </a>
+  </mat-card-actions>
+</mat-card>

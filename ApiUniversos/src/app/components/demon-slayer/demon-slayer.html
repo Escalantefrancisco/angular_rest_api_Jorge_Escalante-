@@ -1,0 +1,59 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    routerLink="/"
+    aria-label="Volver al inicio"
+  >
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+
+  <span>Personajes de Demon Slayer</span>
+</mat-toolbar>
+
+<main class="characters-container">
+  <header class="list-header">
+    <h1>Explora los personajes</h1>
+
+    <p>
+      Descubre los personajes de Kimetsu no Yaiba.
+    </p>
+
+    @if (totalCharacters() > 0) {
+      <p>Total de personajes: {{ totalCharacters() }}</p>
+    }
+  </header>
+
+  @if (loading()) {
+    <div class="loading">
+      <mat-spinner diameter="52"></mat-spinner>
+      <p>Cargando personajes...</p>
+    </div>
+  } @else if (error()) {
+    <div class="message">
+      <p>No se pudo conectar con la API.</p>
+
+      <button mat-flat-button color="primary" (click)="retry()">
+        <mat-icon>refresh</mat-icon>
+        Reintentar
+      </button>
+    </div>
+  } @else {
+    <section class="characters-grid">
+      @for (character of characters(); track character.id) {
+        <app-demon-slayer-card [character]="character" />
+      } @empty {
+        <p>No se encontraron personajes.</p>
+      }
+    </section>
+
+    <mat-paginator
+      [length]="totalCharacters()"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="[6, 12, 24]"
+      [showFirstLastButtons]="true"
+      (page)="changePage($event)"
+      aria-label="Paginación de personajes"
+    />
+  }
+</main>
